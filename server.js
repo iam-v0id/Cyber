@@ -5,7 +5,9 @@ const typeDefs = require('./schema/typeDefs')
 const resolvers = require('./schema/resolvers')
 const dotenv = require('dotenv')
 const app = express()
-const server = new ApolloServer({typeDefs, resolvers,context:({req})=>({req})})
+const server = new ApolloServer({cors: {
+    origin: '*',	
+    credentials: true},typeDefs, resolvers,context:({req})=>({req})})
 dotenv.config()
 
 const url=process.env.url
