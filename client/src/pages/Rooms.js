@@ -1,26 +1,25 @@
 import React, { Fragment } from 'react'
 import {gql} from 'graphql-tag'
 import {Grid} from 'semantic-ui-react'
-import PostCard from '../components/PostCard'
+import RoomCard from '../components/RoomCard'
 import {Query} from 'react-apollo'
-function Posts(){
-    
+function Rooms(){
     return(
       <Grid columns={3}>
       <Grid.Row>
-      <h1>Recent Posts</h1>
+      <h1>Hacking Rooms</h1>
       </Grid.Row>
         <Grid.Row>
-        <Query query={FETCH_POSTS_QUERY}>
+        <Query query={FETCH_ROOMS_QUERY}>
           {
             ({loading,error,data})=>{
               if(loading) return <h1>Loading</h1>
               if(error) console.log(error)
-              
+              console.log(data)
               return <Fragment>{
-                 data.getPosts.map(post=>(
-            <Grid.Column key={post.id}>
-              <PostCard post = {post}/>
+                 data.getRooms.map(room=>(
+            <Grid.Column key={room.id}>
+              <RoomCard room = {room}/>
             </Grid.Column>
                  )
           )
@@ -34,25 +33,13 @@ function Posts(){
     )
     
 }
-const FETCH_POSTS_QUERY = gql`
-   query getPosts{
-  getPosts{
+const FETCH_ROOMS_QUERY = gql`
+   query getRooms{
+  getRooms{
    	id
-    body
-    username
+    name
     createdAt
-    comments{
-      id
-      body
-      username
-      createdAt
-    }
-  likes{
-    id
-    username
-    createdAt
-  }
   }
     }
 `
-export default Posts
+export default Rooms

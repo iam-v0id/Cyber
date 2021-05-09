@@ -26,6 +26,6 @@ module.exports = (context)=>{
         }
     }
     else{
-        throw AuthenticationError('You are not authorized ')
+        throw new AuthenticationError('You are not authorized ')
     }
 }

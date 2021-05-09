@@ -24,6 +24,13 @@ function MenuBar() {
           as={Link}
           to='/posts'
         />
+        <Menu.Item
+          name='Rooms'
+          active={activeItem === 'Rooms'}
+          onClick={handleItemClick}
+          as={Link}
+          to='/Rooms'
+        />
         <Menu.Menu position='right'>
           <Menu.Item
           name='login'

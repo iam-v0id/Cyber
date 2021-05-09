@@ -31,7 +31,8 @@ module.exports = {
                 throw new Error('name cannot be empty')
             }
             const room = new Room({
-                name:name
+                name:name,
+                createdAt: new Date().toISOString()
             })
             await room.save()
             return room;

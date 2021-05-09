@@ -23,6 +23,7 @@ const typeDefs = gql`
   type Room{
     id: ID!,
     name: String!,
+    createdAt: String!,
     questions: [Question]!,
     users: [Userdone]!
   }

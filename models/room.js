@@ -2,6 +2,7 @@ const {model,Schema} = require('mongoose')
 
 const roomSchema = new Schema({
     name: String,
+    createdAt: String,
     questions: [
         {
             name: String,

@@ -1,19 +1,11 @@
 import ReactDOM from 'react-dom';
-import  ApolloClient from 'apollo-boost'
 import reportWebVitals from './reportWebVitals';
-import {ApolloProvider} from '@apollo/react-hooks'
 import React from 'react';
 import App from './App'
-const client = new ApolloClient({
-  uri:'http://localhost:5000'
-})
-ReactDOM.render(
-      
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>,
-    document.getElementById('root')
 
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
