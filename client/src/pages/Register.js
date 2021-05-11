@@ -36,10 +36,10 @@ function Register(props){
          <div>
             <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
                <h1>Register</h1>
-               <Form.Input  label="username" placeholder="username.." name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
-               <Form.Input  label="Email" placeholder="Email.." name="email" type="email" value={values.email} onChange={onchange} error={errors.email ? true : false}/>
-               <Form.Input label="password" placeholder="Password.." name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
-              <Form.Input label="confirmpassword" placeholder="confirm password.." type="password" name="confirmpassword" value={values.confirmpassword} onChange={onchange} error={errors.confirmpassword ? true : false}/>
+               <Form.Input  label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
+               <Form.Input  label="Email" placeholder="email" name="email" type="email" value={values.email} onChange={onchange} error={errors.email ? true : false}/>
+               <Form.Input label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
+              <Form.Input label="Confirm Password" placeholder="confirm password" type="password" name="confirmpassword" value={values.confirmpassword} onChange={onchange} error={errors.confirmpassword ? true : false}/>
                <Button type="submit" primary>Register</Button>
            </Form>
            {Object.keys(errors).length>0 && (

@@ -9,7 +9,7 @@ function RoomCard({room:{id,name,createdAt}}){
     <Card.Content>
       <Card.Header>{name}</Card.Header>
       <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
-          <Button as={Link} to={`/rooms/${id}`}> Start HAcking</Button>
+          <Button as={Link} to={`/rooms/${id}`}> 5t4rt H4ck1ng</Button>
     </Card.Content>
     
   </Card>

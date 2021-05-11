@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Button, Form} from 'semantic-ui-react'
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
+import {Helmet} from 'react-helmet';
 import './Login.css'
 function Login(props){
       const [errors,setErrors] = useState({})
@@ -29,12 +30,14 @@ function Login(props){
              password: values.password
          }
      })
+     const loginpage={}
      return(
          <div className="loginpage">
+            <div>
             <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
                <h1>Login</h1>
-               <Form.Input  label="username" placeholder="username.." name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
-               <Form.Input label="password" placeholder="Password.." name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
+               <Form.Input  label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
+               <Form.Input label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
                <Button type="submit" primary>Login</Button>
            </Form>
            {Object.keys(errors).length>0 && (
@@ -45,9 +48,10 @@ function Login(props){
                 )
                 })}
             </ul>
-        </div>
+            </div>
            )}
-           </div>
+            </div>
+        </div>
      )
 }
 

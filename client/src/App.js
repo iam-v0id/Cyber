@@ -17,6 +17,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+     
       <Container>
       <MenuBar />
       <Route exact path ='/' component={Home}/>
