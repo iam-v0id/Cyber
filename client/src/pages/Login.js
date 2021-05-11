@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Button, Form} from 'semantic-ui-react'
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
+import './Login.css'
 function Login(props){
       const [errors,setErrors] = useState({})
      const [values,setValues] = useState({
@@ -29,7 +30,7 @@ function Login(props){
          }
      })
      return(
-         <div>
+         <div className="loginpage">
             <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
                <h1>Login</h1>
                <Form.Input  label="username" placeholder="username.." name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
