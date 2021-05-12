@@ -48,7 +48,7 @@ function Login(props){
             <h2 >Sign In/Sign Up</h2>
             </Grid>
             <TextField className="loginuser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false} fullWidth required />
-            <TextField className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/ fullWidth required/>
+            <TextField className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false} fullWidth required/>
             <Button variant='contained' type='submit' color='primary' onClick={onSubmit} className={loading ? 'loading': ''}>Sign In</Button>
           </Paper>
         </Grid>
