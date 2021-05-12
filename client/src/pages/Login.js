@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import {Button, Form} from 'semantic-ui-react'
+import { Grid, Paper, TextField } from '@material-ui/core';
+import {Button, Form, Item} from 'semantic-ui-react'
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
-import {Helmet} from 'react-helmet';
 import './Login.css'
 function Login(props){
       const [errors,setErrors] = useState({})
@@ -31,15 +31,33 @@ function Login(props){
          }
      })
      const loginpage={}
+     
      return(
+         
          <div className="loginpage">
+             <div>
+             <img src="C:\Users\wasim\Desktop\Cyber\client\src\pages\Club LOGO_bg.png" width='60vh' height='100vh'/>
+             </div>
+             <h2>For H4ck3r5</h2>
             <div>
-            <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
-               <h1>Login</h1>
-               <Form.Input  label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
-               <Form.Input label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
-               <Button type="submit" primary>Login</Button>
-           </Form>
+            <Grid className="panestyle">
+            <Paper elevation={10} className="paperStyle">
+            <Grid container spacing={0} justify='center' alignItems='center' direction='column'>
+            <h2 >Sign In/Sign Up</h2>
+            </Grid>
+            <TextField label='Username' placeholder='Enter Username' fullWidth required />
+            <TextField label='Password' placeholder='Enter Password' fullWidth required/>
+            <Button variant='contained' type='submit' color='primary' >Sign In</Button>
+          </Paper>
+        </Grid>
+            {/*<Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
+               <h1 className="loginh1">Login</h1>
+               <Form.Input  className="loginuser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
+               <Form.Input className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
+               <center>
+               <Button class="text-center" type="submit" primary>Login</Button>
+                   </center>
+     </Form>*/}
            {Object.keys(errors).length>0 && (
             <div className="ui error message">
             <ul className="list">

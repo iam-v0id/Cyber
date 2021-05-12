@@ -1,0 +1,7 @@
+.homepage{
+    background-image: url(Club_LOGO.png);
+    min-height: 92vh;
+    min-width: 50vh;
+    background-position: center;
+    background-size: cover;
+}

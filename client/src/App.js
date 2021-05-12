@@ -17,17 +17,15 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-     
-      <Container>
       <MenuBar />
       <Route exact path ='/' component={Home}/>
       <Route exact path ='/login' component={Login}/>
       <Route exact path ='/Register' component={Register}/>
+      <Container>
       <Route exact path = '/posts' component={Posts}/>
-      <Route exact path='/Rooms' component={Rooms}/>
       </Container>
+      <Route exact path='/Rooms' component={Rooms}/>
     </Router>
-    
     </ApolloProvider>
     
   );
