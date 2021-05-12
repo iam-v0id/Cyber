@@ -3,6 +3,7 @@ import {Button, Form} from 'semantic-ui-react'
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
 import {AuthContext} from '../context/auth'
+import './Register.css'
 function Register(props){
     const context  = useContext(AuthContext)
       const [errors,setErrors] = useState({})
@@ -36,14 +37,16 @@ function Register(props){
          }
      })
      return(
-         <div>
+         <div className="registerpage">
             <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
                <h1>Register</h1>
-               <Form.Input  label="username" placeholder="username.." name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
-               <Form.Input  label="Email" placeholder="Email.." name="email" type="email" value={values.email} onChange={onchange} error={errors.email ? true : false}/>
-               <Form.Input label="password" placeholder="Password.." name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
-              <Form.Input label="confirmpassword" placeholder="confirm password.." type="password" name="confirmpassword" value={values.confirmpassword} onChange={onchange} error={errors.confirmpassword ? true : false}/>
+               <Form.Input  className="reguser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
+               <Form.Input  className="regemail" label="Email" placeholder="email" name="email" type="email" value={values.email} onChange={onchange} error={errors.email ? true : false}/>
+               <Form.Input className="regpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
+               <Form.Input className="regconpass" label="Confirm Password" placeholder="confirm password" type="password" name="confirmpassword" value={values.confirmpassword} onChange={onchange} error={errors.confirmpassword ? true : false}/>
+               <center>
                <Button type="submit" primary>Register</Button>
+                   </center>
            </Form>
            {Object.keys(errors).length>0 && (
             <div className="ui error message">

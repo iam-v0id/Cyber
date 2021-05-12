@@ -22,14 +22,14 @@ function App() {
     <AuthProvider>
       <ApolloProvider client={client}>
       <Router>
-      <Container>
       <MenuBar />
       <Route exact path ='/' component={Home}/>
       <AuthRoute exact path ='/login' component={Login}/>
       <AuthRoute exact path ='/Register' component={Register}/>
+      <Container>
       <PostsRoute exact path = '/posts' component={Posts}/>
-      <RoomsRoute exact path='/Rooms' component={Rooms}/>
       </Container>
+      <RoomsRoute exact path='/Rooms' component={Rooms}/>
     </Router>
     </ApolloProvider>
     </AuthProvider>

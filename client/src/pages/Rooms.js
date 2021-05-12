@@ -3,11 +3,12 @@ import {gql} from 'graphql-tag'
 import {Grid} from 'semantic-ui-react'
 import RoomCard from '../components/RoomCard'
 import {Query} from 'react-apollo'
+import './Rooms.css'
 function Rooms(){
     return(
-      <Grid columns={3}>
+      <Grid className="room" columns={3}>
       <Grid.Row>
-      <h1>Hacking Rooms</h1>
+      <h1 className="roomh1">Hacking Rooms</h1>
       </Grid.Row>
         <Grid.Row>
         <Query query={FETCH_ROOMS_QUERY}>
@@ -15,7 +16,8 @@ function Rooms(){
             ({loading,error,data})=>{
               if(loading) return <h1>Loading</h1>
               if(error) console.log(error)
-              return <Fragment>{
+              console.log(data)
+              return <Fragment className="roomcard">{
                  data.getRooms.map(room=>(
             <Grid.Column key={room.id}>
               <RoomCard room = {room}/>

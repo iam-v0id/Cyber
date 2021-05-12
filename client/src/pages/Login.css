@@ -1,0 +1,15 @@
+.imgstyle{
+    min-height: 50vh;
+}
+.panestyle{
+    padding-top: 2vh;
+    padding-left: 80vh;
+    padding-right: 25vh;
+}
+.paperStyle{
+    padding-left: 2vh;
+    height:60vh;
+    width:50vh;
+    display: grid;
+    place-items: center;
+}

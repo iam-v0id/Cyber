@@ -1,0 +1,26 @@
+.registerpage{
+    background-color: chartreuse;
+    min-height: 92vh;
+    display: grid;
+    place-items: center;
+    padding-left: 5vh;
+    padding-right: 5vh;
+}
+h1{
+    display: grid;
+    place-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.reguser{
+    width: 50vh;
+}
+.regemail{
+    width: 50vh;
+}
+.regpass{
+    width:50vh;
+}
+.regconpass{
+    width: 50vh;
+    padding-bottom: 5vh;
+}
