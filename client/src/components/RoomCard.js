@@ -13,7 +13,6 @@ function RoomCard({room:{id,name,createdAt}}){
     </Card.Content>
     
   </Card>
-   
     )
 
 }

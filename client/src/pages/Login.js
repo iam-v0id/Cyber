@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useContext,useState} from 'react'
 import {Button, Form} from 'semantic-ui-react'
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
-import './Login.css'
+import {AuthContext} from '../context/auth'
 function Login(props){
+     const context = useContext(AuthContext)
       const [errors,setErrors] = useState({})
      const [values,setValues] = useState({
          username: '',
@@ -17,7 +18,7 @@ function Login(props){
      }
      const [loginuser,{loading}] = useMutation(LOGIN_USER,{
          update(_,result){
-             console.log(result)
+            context.login(result.data.login)
              props.history.push('/')
          },
          onError(err){
@@ -30,6 +31,7 @@ function Login(props){
          }
      })
      return(
+         <body id="body">
          <div className="loginpage">
             <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
                <h1>Login</h1>
@@ -48,6 +50,7 @@ function Login(props){
         </div>
            )}
            </div>
+           </body>
      )
 }
 

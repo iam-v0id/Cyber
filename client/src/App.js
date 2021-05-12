@@ -10,24 +10,29 @@ import Rooms from './pages/Rooms'
 import MenuBar from './components/MenuBar'
 import {ApolloProvider} from 'react-apollo'
 import ApolloClient from 'apollo-boost'
+import {AuthProvider} from './context/auth'
+import AuthRoute from './context/AuthRoute'
+import PostsRoute from './context/PostsRoute'
+import RoomsRoute from './context/RoomsRoute'
 const client = new ApolloClient({
   uri:'http://localhost:5000/graphql'
 })
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <AuthProvider>
+      <ApolloProvider client={client}>
       <Router>
       <Container>
       <MenuBar />
       <Route exact path ='/' component={Home}/>
-      <Route exact path ='/login' component={Login}/>
-      <Route exact path ='/Register' component={Register}/>
-      <Route exact path = '/posts' component={Posts}/>
-      <Route exact path='/Rooms' component={Rooms}/>
+      <AuthRoute exact path ='/login' component={Login}/>
+      <AuthRoute exact path ='/Register' component={Register}/>
+      <PostsRoute exact path = '/posts' component={Posts}/>
+      <RoomsRoute exact path='/Rooms' component={Rooms}/>
       </Container>
     </Router>
-    
     </ApolloProvider>
+    </AuthProvider>
     
   );
 }
