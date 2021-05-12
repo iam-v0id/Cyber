@@ -1,15 +1,35 @@
+ul{
+    padding: 0;
+}
 .imgstyle{
-    min-height: 50vh;
-}
-.panestyle{
-    padding-top: 2vh;
-    padding-left: 80vh;
-    padding-right: 25vh;
-}
-.paperStyle{
-    padding-left: 2vh;
-    height:60vh;
-    width:50vh;
     display: grid;
     place-items: center;
+}
+.paperStyle{
+    height: 60vh;
+    width: 50vh;
+    display: grid;
+    justify-content: center;
+}
+.loginh2-2{
+    margin-bottom: -100vh;
+}
+.loginh2-1{
+    display: grid;
+    place-items: center;
+}
+.loginpage{
+    display: grid;
+    place-items: center;
+    min-height: 92vh;
+}
+.loginuser{
+    margin:"100px auto";
+}
+.loginpass{
+    margin:"8px 0";
+}
+.btstyle{
+    padding: 0;
+    margin:"100px 0";
 }

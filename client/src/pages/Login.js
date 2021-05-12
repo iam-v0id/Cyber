@@ -1,9 +1,9 @@
 import React,{useContext,useState} from 'react'
-import { Grid, Paper, TextField } from '@material-ui/core';
-import {Button, Form, Item} from 'semantic-ui-react'
+import { Grid, Paper, TextField,Button,Box } from '@material-ui/core';
 import {gql} from 'graphql-tag'
 import {useMutation} from 'react-apollo'
 import {AuthContext} from '../context/auth'
+import './Login.css'
 function Login(props){
      const context = useContext(AuthContext)
       const [errors,setErrors] = useState({})
@@ -32,36 +32,25 @@ function Login(props){
          }
      })
      const loginpage={}
-     
+     const btStyle={margin:"2px 2px 20px 5px",maxWidth: '70px', maxHeight: '30px', minWidth: '70px', minHeight: '30px'};
      return(
          <body id="body">
          <div className="loginpage">
-             
-             <div>
-             <img src="C:\Users\wasim\Desktop\Cyber\client\src\pages\Club LOGO_bg.png" width='60vh' height='100vh'/>
-             </div>
-             <h2>For H4ck3r5</h2>
+            <img src="https://i.ibb.co/dK3MzhN/LOGO-3.png" className="imgstyle"/>
+            <h2 className="loginh2-1">For H4ck3r5</h2>
             <div> 
             <Grid className="panestyle">
             <Paper elevation={10} className="paperStyle">
             <Grid container spacing={0} justify='center' alignItems='center' direction='column'>
-            <h2 >Sign In/Sign Up</h2>
+            <h2 className="loginh2-2">Login</h2>
             </Grid>
             <TextField className="loginuser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false} fullWidth required />
             <TextField className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false} fullWidth required/>
-            <Button variant='contained' type='submit' color='primary' onClick={onSubmit} className={loading ? 'loading': ''}>Sign In</Button>
+            <Box textAlign='center'>
+            <Button variant='contained' type='submit' color='primary' onClick={onSubmit} style={btStyle}>Login</Button>
+                </Box>
           </Paper>
         </Grid>
-                {/*
-            <Form onSubmit={onSubmit} className={loading ? 'loading': ''}>
-               <h1 className="loginh1">Login</h1>
-               <Form.Input  className="loginuser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false}/>
-               <Form.Input className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false}/>
-               <center>
-               <Button class="text-center" type="submit" primary>Login</Button>
-                   </center>
-     </Form>
-                */}
            {Object.keys(errors).length>0 && (
             <div className="ui error message">
             <ul className="list">
