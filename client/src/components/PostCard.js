@@ -8,7 +8,6 @@ import DeleteButton from './DeleteButton'
 function PostCard({post:{body,createdAt,id,username,comments,likes}}){
     function likepost(){
         console.log("post liked")
-        console.log(id)
     }
     const {user} = useContext(AuthContext)
     return(

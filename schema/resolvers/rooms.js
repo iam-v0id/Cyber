@@ -7,7 +7,7 @@ module.exports = {
     Query:{
         async getRooms(){
             try{
-                const rooms = await Room.find()
+                const rooms = await Room.find({}).sort({createdAt:-1})
                 return rooms
             }
             catch(err){

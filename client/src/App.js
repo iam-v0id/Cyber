@@ -17,6 +17,7 @@ import RoomsRoute from './context/RoomsRoute'
 import {setContext} from 'apollo-link-context'
 import {createHttpLink} from 'apollo-link-http'
 import {InMemoryCache} from 'apollo-cache-inmemory'
+import SingleRoom from './components/room/SingleRoom'
 const httpLink = createHttpLink({
   uri:'http://localhost:5000/graphql'
 })
@@ -45,6 +46,7 @@ function App() {
       <PostsRoute exact path = '/posts' component={Posts}/>
       </Container>
       <RoomsRoute exact path='/Rooms' component={Rooms}/>
+      <RoomsRoute exact path='/Rooms/:roomId' component={SingleRoom}/>
     </Router>
     </ApolloProvider>
     </AuthProvider>
