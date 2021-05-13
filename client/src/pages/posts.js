@@ -1,14 +1,18 @@
-import React, { Fragment } from 'react'
+import React, { useContext,Fragment } from 'react'
 import {gql} from 'graphql-tag'
-import {Grid} from 'semantic-ui-react'
+import {Grid,Transition} from 'semantic-ui-react'
 import PostCard from '../components/PostCard'
 import {Query} from 'react-apollo'
+import AuthContext from '../context/auth'
+import PostForm from '../components/PostForm'
 function Posts(){
-    
     return(
-      <Grid columns={3}>
+      <Grid.Row columns={3}>
       <Grid.Row>
       <h1>Recent Posts</h1>
+      <Grid.Row>
+        <PostForm/>
+      </Grid.Row>
       </Grid.Row>
         <Grid.Row>
         <Query query={FETCH_POSTS_QUERY}>
@@ -19,9 +23,11 @@ function Posts(){
               
               return <Fragment>{
                  data.getPosts.map(post=>(
+                   <Transition>
             <Grid.Column key={post.id}>
               <PostCard post = {post}/>
             </Grid.Column>
+            </Transition>
                  )
           )
               }
@@ -30,7 +36,7 @@ function Posts(){
         }
         </Query>
         </Grid.Row>
-      </Grid>
+      </Grid.Row>
     )
     
 }

@@ -9,13 +9,28 @@ import Posts from './pages/posts'
 import Rooms from './pages/Rooms'
 import MenuBar from './components/MenuBar'
 import {ApolloProvider} from 'react-apollo'
-import ApolloClient from 'apollo-boost'
+import ApolloClient from 'apollo-client'
 import {AuthProvider} from './context/auth'
 import AuthRoute from './context/AuthRoute'
 import PostsRoute from './context/PostsRoute'
 import RoomsRoute from './context/RoomsRoute'
-const client = new ApolloClient({
+import {setContext} from 'apollo-link-context'
+import {createHttpLink} from 'apollo-link-http'
+import {InMemoryCache} from 'apollo-cache-inmemory'
+const httpLink = createHttpLink({
   uri:'http://localhost:5000/graphql'
+})
+const authLink = setContext(()=>{
+  const token=localStorage.getItem('JwtToken')
+  return{
+    headers:{
+      Authorization: token? `Bearer ${token}` : ''
+    }
+  }
+})
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
 })
 function App() {
   return (
