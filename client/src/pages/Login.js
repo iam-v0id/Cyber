@@ -36,7 +36,7 @@ function Login(props){
      return(
          <body id="body">
          <div className="loginpage">
-            <img src="https://i.ibb.co/dK3MzhN/LOGO-3.png" className="imgstyle"/>
+            <img src="https://i.ibb.co/x7zYNwL/image.png" className="imgstyle"/>
             <h2 className="loginh2-1">For H4ck3r5</h2>
             <div> 
             <Grid className="panestyle">
@@ -44,8 +44,8 @@ function Login(props){
             <Grid container spacing={0} justify='center' alignItems='center' direction='column'>
             <h2 className="loginh2-2">Login</h2>
             </Grid>
-            <TextField className="loginuser" label="Username" placeholder="username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false} fullWidth required />
-            <TextField className="loginpass" label="Password" placeholder="password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false} fullWidth required/>
+            <TextField className="loginuser" label="Username" placeholder="Username" name="username" type="text" value={values.username} onChange={onchange} error={errors.username ? true : false} fullWidth required />
+            <TextField className="loginpass" label="Password" placeholder="Password" name="password" type="password" value={values.password} onChange={onchange} error={errors.password ? true : false} fullWidth required/>
             <Box textAlign='center'>
             <Button variant='contained' type='submit' color='primary' onClick={onSubmit} style={btStyle}>Login</Button>
                 </Box>

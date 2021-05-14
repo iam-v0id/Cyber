@@ -1,26 +1,41 @@
-.registerpage{
-    background-color: chartreuse;
-    min-height: 92vh;
-    display: grid;
-    place-items: center;
-    padding-left: 5vh;
-    padding-right: 5vh;
+ul{
+    padding: 0;
 }
-h1{
+h2{
+    margin-top: .5em;
+    padding-top: 0;
+}
+.regimgstyle{
+    max-height: 50vh;
+    max-width: 50vh;
     display: grid;
     place-items: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.regpaperStyle{
+    height: 60vh;
+    width: 50vh;
+    display: grid;
+    justify-content: center;
+}
+.regh2-2{
+    margin-bottom: -100vh;
+}
+.regh2-1{
+    margin-top: .5em;
+    padding-top: 0;
+}
+.registerpage{
+    display: grid;
+    place-items: center;
+    min-height: 92vh;
 }
 .reguser{
-    width: 50vh;
-}
-.regemail{
-    width: 50vh;
+    margin:"100px auto";
 }
 .regpass{
-    width:50vh;
+    margin:"8px 0";
 }
-.regconpass{
-    width: 50vh;
-    padding-bottom: 5vh;
+.regbtstyle{
+    padding: 0;
+    margin:"100px 0";
 }
