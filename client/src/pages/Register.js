@@ -39,7 +39,7 @@ function Register(props){
      const regbtStyle={margin:"2px 2px 20px 5px",maxWidth: '80px', maxHeight: '30px', minWidth: '80px', minHeight: '30px'};
      return(
          <div className="registerpage">
-            <img src="https://i.ibb.co/x7zYNwL/image.png" className="regimgstyle"/>
+            <img src="https://i.ibb.co/tm1LGSz/image.png" className="regimgstyle"/>
             <h2 className="regh2-1">St4rt H4ck1ng T0d4y</h2>
              <Grid className="regpanestyle">
             <Paper elevation={10} className="regpaperStyle">

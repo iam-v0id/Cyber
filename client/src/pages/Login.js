@@ -36,7 +36,7 @@ function Login(props){
      return(
          <body id="body">
          <div className="loginpage">
-            <img src="https://i.ibb.co/x7zYNwL/image.png" className="imgstyle"/>
+            <img src="https://i.ibb.co/tm1LGSz/image.png" className="imgstyle"/>
             <h2 className="loginh2-1">For H4ck3r5</h2>
             <div> 
             <Grid className="panestyle">

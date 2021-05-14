@@ -1,4 +1,9 @@
 .roomh1{
-    padding-left: 3vh;
-    margin-top: -100vh;
+    padding-left: 5vh;
+}
+.roomcard{
+    margin-left: 2vh;
+}
+.room{
+    margin-right: 2vh;
 }

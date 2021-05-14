@@ -2,7 +2,7 @@ import React,{useContext,useState} from 'react'
 import {Button, Form} from 'semantic-ui-react'
 import { useMutation} from 'react-apollo'
 import gql from 'graphql-tag'
-
+import './RoomForm.css'
 function RoomForm(){
     const [values,setValues] = useState({
         name: ''
@@ -19,17 +19,19 @@ function RoomForm(){
            console.log(result)
        } 
    })
+   const crbtstyle={margin:"0vh 0vh 0vh 5vh"}
    return(
        <Form onSubmit={onSubmit}>
-           <h2>Create Room</h2>
+           <h2 className="crh2">Create Room</h2>
            <Form.Field>
                <Form.Input
                placeholder='Create Room'
                name='name'
                onChange={onchange}
                value={values.name}
+               className="crinput"
                />
-               <Button type="submit" color="teal">Create Room</Button>
+               <Button style={crbtstyle} type="submit" color="teal">Create Room</Button>
            </Form.Field>
        </Form>
    )
