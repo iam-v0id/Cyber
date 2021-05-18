@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 function RoomCard({room:{id,name,createdAt}}){
   const {user} = useContext(AuthContext)
   const rbt={display:"flex",justifyContent:"center"}
+  const dbt={display:"flex",justifyContent:"center"}
     return(
       <Card className="roomcard">
         <CardMedia
@@ -30,7 +31,7 @@ function RoomCard({room:{id,name,createdAt}}){
           </Typography>
         </CardContent>
         <Button as={Link} to={`/rooms/${id}`} size="small" variant="contained" color="primary" style={rbt}>5t4rt H4ck1ng</Button>
-        {user && user.username==='Alpha_2018' && <DeleteRoom roomId={id} />}
+        {user && user.username==='Alpha_2018' && <DeleteRoom style={dbt} roomId={id} />}
     </Card>
     )
 

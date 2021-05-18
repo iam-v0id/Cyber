@@ -13,8 +13,9 @@ function DeleteRoom(roomId){
             roomId
         }
     })
+    const dbt={display:"flex",justifyContent:"center"}
     return(
-        <Button as="div" color="red" floated="right" onClick={DeleteRoom}>
+        <Button style={dbt} as="div" color="red" onClick={DeleteRoom}>
             <Icon name="trash" />
         </Button>
     )
