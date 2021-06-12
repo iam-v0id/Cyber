@@ -19,7 +19,7 @@ import {createHttpLink} from 'apollo-link-http'
 import {InMemoryCache} from 'apollo-cache-inmemory'
 import SingleRoom from './components/room/SingleRoom'
 const httpLink = createHttpLink({
-  uri:'http://localhost:5000/graphql'
+  uri:'https://fast-crag-26332.herokuapp.com/graphql'
 })
 const authLink = setContext(()=>{
   const token=localStorage.getItem('JwtToken')

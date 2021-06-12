@@ -7,24 +7,48 @@ import { Paper, TextField, Box } from "@material-ui/core";
 import {AuthContext} from '../../context/auth'
 import AddQuestion from './AddQuestion'
 import DeleteQuestion from "./DeleteQuestion";
+import { Room } from "@material-ui/icons";
 function SingleRoom(props) {
   const roomId = props.match.params.roomId;
-  const [points, setpoints] = useState(0);
-  const [values, setValues] = useState({
-    ans: "",
-  });
-  const {user} = useContext(AuthContext);
-  
-  function checkAnswer(ans, roomId) {
-    if (ans === values.ans) {
-      setpoints(points + 1);
-      localStorage.setItem(roomId, points);
-    }
-  }
-
-  const onchange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+  const [values, setValues] = useState(new Map());
+  const onchange = (e) => {
+    const name = e.target.name;
+    const hidden = e.target.value;
+    setValues(values.set(name, hidden));
   };
+  if(localStorage.getItem(roomId)>0){
+
+  }
+  else{
+  localStorage.setItem(roomId, 0);
+  }
+  const onsubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.id;
+    
+    if (values.get(name) === e.target.name) {
+    if(localStorage.getItem(name)!=1){
+      localStorage.setItem(name, 1);
+      var a ={}
+      a.number=1
+      var points = parseInt(localStorage.getItem(roomId))
+      a.number = points+1
+      localStorage.setItem(roomId, a.number);
+      if(localStorage.getItem(roomId)==10){
+        //Todo room completed
+        //send mutation to server add name of user to db
+      }
+    }
+    else{
+      //todo disable button
+      console.log("already submitted")
+    }
+    } else {
+      //todo pop up asnwer was wrong
+      console.log("answer was incorrect ");
+    }
+  };
+  const {user} = useContext(AuthContext)
 
   return (
     <Grid.Row columns={3}>
@@ -47,18 +71,16 @@ function SingleRoom(props) {
                     <span>Question</span>
                     <h2>{room.name}</h2>
                     <h3>{room.description}</h3>
-                    <Form>
+                    <Form  name={room.answer} id={room.id} name={room.answer} onSubmit={onsubmit}>
                       <Form.Field>
                         <Form.Input
                           placeholder="Flag"
-                          name="ans"
+                          name={room.id}
                           onChange={onchange}
-                          value={values.ans}
                         />
                         <Button
                           type="submit"
                           color="teal"
-                          onClick={() => checkAnswer(room.answer, getRoom.id)}
                         >
                           submit
                         </Button>
