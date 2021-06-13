@@ -53,7 +53,10 @@ function SingleRoom(props) {
   return (
     <Grid.Row columns={3}>
       <Grid.Row>
-        <h1>Start Hacking</h1>
+        <div class="container ui">
+        <h1>{roomId.name}</h1>
+        </div>
+        <br></br>
       </Grid.Row>
       <Grid.Row>
         <Query query={FETCH_ROOM_QUERY} variables={{ roomId }}>
@@ -64,17 +67,19 @@ function SingleRoom(props) {
               var getRoom = data.getRoom;
             }
             return (
-              <Fragment>
+              <Fragment >
+                <div class="container ui">
                   {user.username=='Alpha_2018' && <AddQuestion roomId={getRoom.id} />}
+                  <br></br>
+                  <br></br>
                 {getRoom.questions.map((room) => (
-                  <Grid.Column key={room.id}>
-                    <span>Question</span>
-                    <h2>{room.name}</h2>
-                    <h3>{room.description}</h3>
+                  <Grid.Column   key={room.id}>
+                    <span><strong><h3>{room.name}  </h3> </strong></span>
+                    <span>{room.description}</span>
                     <Form  name={room.answer} id={room.id} name={room.answer} onSubmit={onsubmit}>
                       <Form.Field>
                         <Form.Input
-                          placeholder="Flag"
+                          placeholder="<cmrcet>Flag</cmrcet>"
                           name={room.id}
                           onChange={onchange}
                         />
@@ -87,8 +92,12 @@ function SingleRoom(props) {
                       {user && user.username==='Alpha_2018' && <DeleteQuestion questionId={room.id} roomId={getRoom.id} />}
                       </Form.Field>
                     </Form>
+                    <br></br>
+                    <hr ></hr>
+                    <br></br>
                   </Grid.Column>
                 ))}
+                </div>
               </Fragment>
             );
           }}
