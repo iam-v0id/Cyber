@@ -2,31 +2,39 @@ import React, { Fragment, useContext, useState } from "react";
 import { gql } from "graphql-tag";
 import { Query } from "react-apollo";
 import { graphql } from "react-apollo";
-import { Form, Grid, Button } from "semantic-ui-react";
+import { Form, Grid, Button, Label } from "semantic-ui-react";
 import { Paper, TextField, Box } from "@material-ui/core";
 import {AuthContext} from '../../context/auth'
 import AddQuestion from './AddQuestion'
 import DeleteQuestion from "./DeleteQuestion";
 import { Room } from "@material-ui/icons";
+
 function SingleRoom(props) {
   const roomId = props.match.params.roomId;
   const [values, setValues] = useState(new Map());
+  
+
   const onchange = (e) => {
     const name = e.target.name;
     const hidden = e.target.value;
     setValues(values.set(name, hidden));
   };
-  if(localStorage.getItem(roomId)>0){
 
+
+  if(localStorage.getItem(roomId)>0){
   }
   else{
   localStorage.setItem(roomId, 0);
   }
+
+
   const onsubmit = (e) => {
     e.preventDefault();
     const name = e.target.id;
     
     if (values.get(name) === e.target.name) {
+      document.getElementById('btn'+name).innerHTML="Correct Answer"
+      document. getElementById('btn'+name). style. backgroundColor = 'green';
     if(localStorage.getItem(name)!=1){
       localStorage.setItem(name, 1);
       var a ={}
@@ -39,25 +47,39 @@ function SingleRoom(props) {
         //send mutation to server add name of user to db
       }
     }
-    else{
-      //todo disable button
-      console.log("already submitted")
-    }
+    
     } else {
       //todo pop up asnwer was wrong
-      console.log("answer was incorrect ");
+      var a ={}
+      a.number=0
+      var points = parseInt(localStorage.getItem(roomId))
+      if(points>0)
+      a.number = points-1
+      localStorage.setItem(roomId, a.number);
+      localStorage.setItem(name, 0);
+      document.getElementById('btn'+name).innerHTML="Wrong Answer"
+      document. getElementById('btn'+name). style. backgroundColor = 'red' 
     }
   };
   const {user} = useContext(AuthContext)
 
+  const check =(roomid)=>{
+    if(localStorage.getItem(roomid)==1){
+    document.getElementById('btn'+roomid).innerHTML="Correct Answer"
+      document. getElementById('btn'+roomid). style. backgroundColor = 'green';
+    }
+  if(localStorage.getItem('btn'+roomid)==0){
+      document.getElementById('btn'+roomid).innerHTML="Wrong Answer"
+      document. getElementById('btn'+roomid). style. backgroundColor = 'red';
+    }
+  }
+  function solve(roomid){
+    if(localStorage.getItem(roomid)!=1){
+    localStorage.setItem(roomid,0)
+    }
+  }
   return (
     <Grid.Row columns={3}>
-      <Grid.Row>
-        <div class="container ui">
-        <h1>{roomId.name}</h1>
-        </div>
-        <br></br>
-      </Grid.Row>
       <Grid.Row>
         <Query query={FETCH_ROOM_QUERY} variables={{ roomId }}>
           {({ loading, error, data }) => {
@@ -65,6 +87,11 @@ function SingleRoom(props) {
             if (error) console.log(error);
             if (data) {
               var getRoom = data.getRoom;
+              console.log(getRoom)
+              getRoom.questions.map((room) => (
+                check(room.id),
+                solve(room.id)
+              ))
             }
             return (
               <Fragment >
@@ -76,9 +103,10 @@ function SingleRoom(props) {
                   <Grid.Column   key={room.id}>
                     <span><strong><h3>{room.name}  </h3> </strong></span>
                     <span>{room.description}</span>
-                    <Form  name={room.answer} id={room.id} name={room.answer} onSubmit={onsubmit}>
+                    <Form id={room.id} name={room.answer} onSubmit={onsubmit}>
                       <Form.Field>
                         <Form.Input
+                          class="ui form success"
                           placeholder="<cmrcet>Flag</cmrcet>"
                           name={room.id}
                           onChange={onchange}
@@ -86,9 +114,11 @@ function SingleRoom(props) {
                         <Button
                           type="submit"
                           color="teal"
+                          id={room.id}
                         >
                           submit
                         </Button>
+                        <Button id={'btn'+room.id}>Status: {localStorage.getItem('btn'+room.id)}</Button>
                       {user && user.username==='Alpha_2018' && <DeleteQuestion questionId={room.id} roomId={getRoom.id} />}
                       </Form.Field>
                     </Form>
