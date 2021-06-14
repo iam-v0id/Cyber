@@ -8,7 +8,7 @@ import {AuthContext} from '../../context/auth'
 import AddQuestion from './AddQuestion'
 import DeleteQuestion from "./DeleteQuestion";
 import { Room } from "@material-ui/icons";
-
+import RoomSolved from './RoomSolved'
 function SingleRoom(props) {
   const roomId = props.match.params.roomId;
   const [values, setValues] = useState(new Map());
@@ -26,8 +26,7 @@ function SingleRoom(props) {
   else{
   localStorage.setItem(roomId, 0);
   }
-
-
+  
   const onsubmit = (e) => {
     e.preventDefault();
     const name = e.target.id;
@@ -41,43 +40,25 @@ function SingleRoom(props) {
       a.number=1
       var points = parseInt(localStorage.getItem(roomId))
       a.number = points+1
-      localStorage.setItem(roomId, a.number);
-      if(localStorage.getItem(roomId)==10){
-        //Todo room completed
-        //send mutation to server add name of user to db
-      }
+      localStorage.setItem(roomId, a.number)
     }
-    
     } else {
       //todo pop up asnwer was wrong
       var a ={}
       a.number=0
       var points = parseInt(localStorage.getItem(roomId))
-      if(points>0)
+      if(points>0 && localStorage.getItem(name)==1){
       a.number = points-1
       localStorage.setItem(roomId, a.number);
+      }
       localStorage.setItem(name, 0);
       document.getElementById('btn'+name).innerHTML="Wrong Answer"
       document. getElementById('btn'+name). style. backgroundColor = 'red' 
     }
+   
   };
   const {user} = useContext(AuthContext)
 
-  const check =(roomid)=>{
-    if(localStorage.getItem(roomid)==1){
-    document.getElementById('btn'+roomid).innerHTML="Correct Answer"
-      document. getElementById('btn'+roomid). style. backgroundColor = 'green';
-    }
-  if(localStorage.getItem('btn'+roomid)==0){
-      document.getElementById('btn'+roomid).innerHTML="Wrong Answer"
-      document. getElementById('btn'+roomid). style. backgroundColor = 'red';
-    }
-  }
-  function solve(roomid){
-    if(localStorage.getItem(roomid)!=1){
-    localStorage.setItem(roomid,0)
-    }
-  }
   return (
     <Grid.Row columns={3}>
       <Grid.Row>
@@ -88,10 +69,7 @@ function SingleRoom(props) {
             if (data) {
               var getRoom = data.getRoom;
               console.log(getRoom)
-              getRoom.questions.map((room) => (
-                check(room.id),
-                solve(room.id)
-              ))
+              
             }
             return (
               <Fragment >
@@ -99,6 +77,8 @@ function SingleRoom(props) {
                   {user.username=='Alpha_2018' && <AddQuestion roomId={getRoom.id} />}
                   <br></br>
                   <br></br>
+                  {(localStorage.getItem(roomId)==getRoom.questions.length) && <RoomSolved />}
+
                 {getRoom.questions.map((room) => (
                   <Grid.Column   key={room.id}>
                     <span><strong><h3>{room.name}  </h3> </strong></span>
@@ -118,15 +98,19 @@ function SingleRoom(props) {
                         >
                           submit
                         </Button>
-                        <Button id={'btn'+room.id}>Status: {localStorage.getItem('btn'+room.id)}</Button>
+                        
+                        <Button disabled id={'btn'+room.id} color={(localStorage.getItem(room.id)==1 && 'green') || (localStorage.getItem(room.id)==0 && 'red')} >{(localStorage.getItem(room.id)==1 && 'Correct answer') || (localStorage.getItem(room.id)==0 && 'Wrong answer') || ('Status')}</Button>
                       {user && user.username==='Alpha_2018' && <DeleteQuestion questionId={room.id} roomId={getRoom.id} />}
+                      
                       </Form.Field>
                     </Form>
                     <br></br>
                     <hr ></hr>
                     <br></br>
                   </Grid.Column>
-                ))}
+                ))
+                
+                }
                 </div>
               </Fragment>
             );
