@@ -17,9 +17,9 @@ function AddQuestion(roomId){
     }
    const [addQuestion,{error}] = useMutation(CREATE_ADD_MUTATION,{
        variables: values,
-       update(_,result){
+      /* update(_,result){
            console.log(result)
-       } 
+       } */
    })
    const crbtstyle={margin:"0vh 0vh 0vh 5vh"}
    return(

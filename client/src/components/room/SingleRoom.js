@@ -68,7 +68,6 @@ function SingleRoom(props) {
             if (error) console.log(error);
             if (data) {
               var getRoom = data.getRoom;
-              console.log(getRoom)
               
             }
             return (
@@ -77,7 +76,7 @@ function SingleRoom(props) {
                   {user.username=='Alpha_2018' && <AddQuestion roomId={getRoom.id} />}
                   <br></br>
                   <br></br>
-                  {(localStorage.getItem(roomId)==getRoom.questions.length) && <RoomSolved />}
+                  {(localStorage.getItem(roomId)==getRoom.questions.length) && <RoomSolved  room={getRoom}/>}
 
                 {getRoom.questions.map((room) => (
                   <Grid.Column   key={room.id}>
@@ -132,6 +131,9 @@ const FETCH_ROOM_QUERY = gql`
         name
         description
         answer
+      }
+      users{
+        username
       }
     }
   }
